@@ -3,31 +3,35 @@
 \alias{RBacktesting}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+A backtesting toolkit
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Some tools to facilitate process of trading stratergies backtesting. It is not intented to replace any of existing sophistic backtesting packages like Rmetrics. It is just something that I need to use daily.
 }
 \details{
 \tabular{ll}{
 Package: \tab RBacktesting\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.1\cr
 Date: \tab 2014-10-17\cr
 License: \tab What license is it under?\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+This package includes functions belongs two the following section:
+* Getting data
+* Back testing data
+* Evaluated portfolio performance
+* Evaluate per trade performance
+* Option portfolio
 }
 \author{
-Who wrote it
+Bob Li
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: 
 }
 \references{
-~~ Literature or other references for background information ~~
+Packages depends on:
+* quantmod
+* ggplot2 
 }
 ~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
