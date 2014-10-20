@@ -1,4 +1,4 @@
-require(quantmod)
+#'@import quantmod
 loadSymbols <- getSymbols
 loadSymbols.formals <- c(formals(getSymbols)[-(8:9)], alist(auto.assign=getOption("loadSymbols.auto.assign",TRUE),...=))
 
@@ -14,6 +14,7 @@ formals(loadSymbols) <- loadSymbols.formals
 #'@param bb.suffix
 #'@param bb.interval
 #'@return Depends on auto.assing
+
 "getSymbols.Bloomberg" <- function(Symbols,env,return.class='xts',
                                    #from=as.POSIXlt(Sys.time()-60*60,"GMT"),
                                    #to=as.POSIXlt(Sys.time(),"GMT"),

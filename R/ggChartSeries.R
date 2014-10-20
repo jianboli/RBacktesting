@@ -1,9 +1,9 @@
 #' ggplot version of Candle chart
 #' @param x An OHLC object to be charted
 #' @param start The starting time
-#' @param end The ending time 
+#' @param end The ending time
+#' @import ggplot2
 ggChartSeries <- function(x, start=NA, end=NA){
-  require(ggplot2)
   if(is.na(start))
     start = as.Date(index(x)[1])
   if(is.na(end))
