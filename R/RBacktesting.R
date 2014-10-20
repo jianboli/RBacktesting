@@ -4,18 +4,6 @@
 ## Evaluation =============
 
 
-
-
-
-SharpeRatio <- function(pnl, r=0){
-  return((mean(pnl, na.rm=T)-r)/sd(pnl, na.rm=T))
-}
-
-InformationRatio <- function(pnl, indexPnl){
-  activePnl <- pnl-indexPnl
-  return(mean(activePnl)/sd(activePnl))
-}
-
 CumReturn <- function(pnl){
   return(cumprod(pnl+1))
 }
