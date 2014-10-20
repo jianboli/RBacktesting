@@ -27,7 +27,7 @@ This package includes functions belongs two the following section:
 \author{
 Bob Li
 
-Maintainer: 
+Maintainer:{ 
 }
 \references{
 }

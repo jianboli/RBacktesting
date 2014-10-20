@@ -1,4 +1,3 @@
-
 CumReturn <- function(pnl){
   return(cumprod(pnl+1))
 }
