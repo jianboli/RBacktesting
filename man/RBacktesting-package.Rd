@@ -26,12 +26,21 @@ This package includes functions belongs two the following section:
 }}
 \author{
 Bob Li
-
-Maintainer:{ 
+Maintainer:{ }
 }
 \references{
 }
 \keyword{Backtesting}
 \examples{
-~~ simple examples of the most important functions ~~
-}
+\dontrun{
+ yahoo <- getSymbols('YHOO',auto.assign = F)
+ perf <- Ad(yahoo)
+ pnl <- Performance2Pnl(perf)
+ spy <- getSymbols('SPY',auto.assign = F)
+ indexPnl <- Performance2Pnl(Ad(spy))
+ pnls <- AlignPnl(pnl, indexPnl) 
+ PerformanceSummary(pnls[,1], pnls[,2], r= 0.003)
+ YearlyPerformanceSummary(index(pnls), pnls[,1], pnls[,2], r=0.003)
+ AnnualizedPerformanceSummary(pnls[,1], pnls[,2], r=0.003, freq=1/265)
+ }
+ }

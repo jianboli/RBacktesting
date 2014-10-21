@@ -1,4 +1,5 @@
 #'@import quantmod
+#'@import Rbbg
 loadSymbols <- getSymbols
 loadSymbols.formals <- c(formals(getSymbols)[-(8:9)], alist(auto.assign=getOption("loadSymbols.auto.assign",TRUE),...=))
 
@@ -7,14 +8,15 @@ formals(loadSymbols) <- loadSymbols.formals
 #' Get symbols from Bloomberg. This function is not suppose to be called directly, but to be called by getSymbols of quantmod
 #' 
 #'@param Symbols a list of Bloomberg tickers, for consistency with other load symbols method in quantmod, it should be only the name of the tickers
-#'@param env
-#'@param return.class
-#'@param from
-#'@param to
-#'@param bb.suffix
-#'@param bb.interval
+#'@param env where to create objects. (.GlobalEnv)
+#'@param return.class class of returned object
+#'@param from Retrieve no earlier than this date
+#'@param to Retrieve though this date 
+#'@param bb.suffix The Bloomberg yellow ticker
+#'@param bb.interval Time interval for intraday data
+#'@param ... Other parameters passed in by getSymbols
 #'@return Depends on auto.assing
-
+#'@export
 "getSymbols.Bloomberg" <- function(Symbols,env,return.class='xts',
                                    #from=as.POSIXlt(Sys.time()-60*60,"GMT"),
                                    #to=as.POSIXlt(Sys.time(),"GMT"),
@@ -42,11 +44,11 @@ formals(loadSymbols) <- loadSymbols.formals
   }
   if(missing(verbose)) verbose <- FALSE
   if(missing(auto.assign)) auto.assign <- TRUE
-  if('package:Rbbg' %in% search() || require('Rbbg',quietly=TRUE)) {
-{}
-  } else {
-    stop(paste("package:",dQuote('Rbbg'),"cannot be loaded."))
-  }
+#  if('package:Rbbg' %in% search() || require('Rbbg',quietly=TRUE)) {
+#{}
+#  } else {
+#    stop(paste("package:",dQuote('Rbbg'),"cannot be loaded."))
+#  }
 bbconn <- blpConnect()
 for(i in 1:length(Symbols)) {
   bbsym <- paste(Symbols[[i]],bb.suffix)

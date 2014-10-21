@@ -10,17 +10,19 @@ getSymbols.Bloomberg(Symbols, env, return.class = "xts",
 \arguments{
 \item{Symbols}{a list of Bloomberg tickers, for consistency with other load symbols method in quantmod, it should be only the name of the tickers}
 
-\item{env}{}
+\item{env}{where to create objects. (.GlobalEnv)}
 
-\item{return.class}{}
+\item{return.class}{class of returned object}
 
-\item{from}{}
+\item{from}{Retrieve no earlier than this date}
 
-\item{to}{}
+\item{to}{Retrieve though this date}
 
-\item{bb.suffix}{}
+\item{bb.suffix}{The Bloomberg yellow ticker}
 
-\item{bb.interval}{}
+\item{bb.interval}{Time interval for intraday data}
+
+\item{...}{Other parameters passed in by getSymbols}
 }
 \value{
 Depends on auto.assing

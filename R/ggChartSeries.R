@@ -3,6 +3,7 @@
 #' @param start The starting time
 #' @param end The ending time
 #' @import ggplot2
+#' @export
 ggChartSeries <- function(x, start=NA, end=NA){
   if(is.na(start))
     start = as.Date(index(x)[1])
