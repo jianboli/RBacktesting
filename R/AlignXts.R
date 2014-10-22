@@ -1,6 +1,7 @@
 #'@title Alignment of xts objects
 #' 
 #' @name AlginXts
+#' @import xts
 NULL
  
 #'@rdname AlignXts
