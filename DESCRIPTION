@@ -11,4 +11,7 @@ Imports:
     ggplot2,
     Rbbg,
     quantmod,
-    lubridate
+    lubridate,
+    reshape2,
+    xts,
+    stringr
