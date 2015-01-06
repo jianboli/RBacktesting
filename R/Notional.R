@@ -1,13 +1,15 @@
 #' The Notional value of a portfolio
 #'
 #'@param object The portfolio object
+#'@param ... Other parameters
+#'@export
 Notional <- function(object, ...)
   UseMethod("Notional")
 
-#'@rdname Notional
+#'@describeIn Notional Caluate the notional value of a Option portfolio
 #'@title The notional value of the given option portfolio object
-#'@param object The option portfolio
 #'@return The notioal value
-Notional.OptionPos <- function(object){
+#'@export
+Notional.OptionPos <- function(object, ...){
   return(sum(sign(object$delta) *object$multiplier * object$amount * ifelse(is.na(object$underlyingPrice), object$strike, object$underlyingPrice)))
 }

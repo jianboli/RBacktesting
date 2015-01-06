@@ -6,12 +6,12 @@
 \usage{
 Notional(object, ...)
 
-\method{Notional}{OptionPos}(object)
+\method{Notional}{OptionPos}(object, ...)
 }
 \arguments{
 \item{object}{The portfolio object}
 
-\item{object}{The option portfolio}
+\item{...}{Other parameters}
 }
 \value{
 The notioal value

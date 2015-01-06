@@ -11,7 +11,7 @@ TotalValue(object, ...)
 \arguments{
 \item{object}{An portfolio object}
 
-\item{object}{An OptionPos object}
+\item{...}{Other parameters}
 }
 \value{
 The premium value of the portfolio

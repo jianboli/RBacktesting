@@ -6,10 +6,12 @@
 \usage{
 DeltaAdjNotional(object, ...)
 
-\method{DeltaAdjNotional}{OptionPos}(object)
+\method{DeltaAdjNotional}{OptionPos}(object, ...)
 }
 \arguments{
-\item{object}{An OptionPos object}
+\item{object}{An portfolio object}
+
+\item{...}{Other parameters}
 }
 \value{
 the Delta Adjust Notional value

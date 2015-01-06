@@ -11,6 +11,8 @@ PriceAndDeltaUpdate(object, ...)
 \arguments{
 \item{object}{An portolio object}
 
+\item{...}{Other parameters}
+
 \item{date}{The actual as of date of the calculation}
 }
 \value{

@@ -1,10 +1,10 @@
 #' Price And Delta Update
-#' 
 #' @param object An portolio object
+#' @param ... Other parameters
 PriceAndDeltaUpdate <- function(object, ...)
   UseMethod("PriceAndDeltaUpdate")
 
-#' @rdname PriceAndDeltaUpdate
+#' @describeIn PriceAndDeltaUpdate
 #' @param date The actual as of date of the calculation
 #' @return Calcuate the closing price and delta based on black scholes model
 PriceAndDeltaUpdate.OptionPos <- function(object, date){

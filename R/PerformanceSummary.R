@@ -31,9 +31,27 @@ PerformanceSummary <- function(pnl, indexPnl, r=0){
            SharpeRatio=SharpeRatio(pnl, r), 
            IR = InformationRatio(pnl, indexPnl)))  
 }
+
+#' @rdname PerformanceSummary
+#' @title The month performance summary if the corresponding dates are given
+#' @param dates The corresponding dates of the P&L
+#' @importFrom lubridate month
+#' @export
+MonthlyPerformanceSummary <- function(dates, pnl, indexPnl, r=0){
+  allMonths <- as.yearmon(dates)
+  uniqueAllMonths <- unique(allMonths)
+  perfSummary <- data.frame(Month=numeric(0), Return=numeric(0), Sd=numeric(0), MDD=numeric(0), SharpeRatio=numeric(0), IR=numeric(0))
+  for(i in uniqueAllMonths){
+    idx <- allMonths==i
+    summary <- PerformanceSummary(pnl[idx], indexPnl[idx], r)
+    perfSummary <- rbind(perfSummary, c(i,summary))  
+  }
+  colnames(perfSummary) <- c("Month", "Return", "Sd", "MDD", "SharpeRatio", "IR")
+  return(perfSummary) 
+}
+
 #' @rdname PerformanceSummary
 #' @title The yearly performance summary if the corresponding dates are given
-#' @param dates The corresponding dates of the data
 #' @importFrom lubridate year
 #' @export
 YearlyPerformanceSummary <- function(dates, pnl, indexPnl, r=0){

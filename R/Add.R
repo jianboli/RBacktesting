@@ -1,13 +1,12 @@
-#' S3 generic function 
-#' 
-#' Add a object input a list
+#' S3 generic function  Add a object into a list
 #' @param object the object to be working on
+#' @param ... Other parameters
+#' @export
 Add <- function(object, ...)
   UseMethod("Add")
 
-#'@rdname Add Append an new option object to the end of OptionPos object
-#'@param object An OptionPos object
-#'@param strick The strick of the new option
+#'@describeIn Add Append an new option object to the end of OptionPos object
+#'@param strike The strick of the new option
 #'@param expiration The expiration date of the new option
 #'@param type What is the type of the option: call or put
 #'@param underlyingName The underlying ticker of the option
@@ -22,8 +21,9 @@ Add <- function(object, ...)
 #'@param underlyingSigma The volatility of the underlying security
 #'@param interestRate the current interestedRate
 #'@return The OptionPos with the new option appended
+#'@export
 Add.OptionPos <- function(object, strike, expiration, type=c('C','P'), underlyingName = "", name = "", multiplier = 100,
-                          amount = 0, price = NA, delta = NA, vega = NA, theta = NA, underlyingPrice = NA, underlyingSigma = NA, interestRate = NA){
+                          amount = 0, price = NA, delta = NA, vega = NA, theta = NA, underlyingPrice = NA, underlyingSigma = NA, interestRate = NA, ...){
   if(!is.OptionPos(object))
     return(object)
   

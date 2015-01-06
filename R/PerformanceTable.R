@@ -4,6 +4,7 @@
 #'@param perf
 #'@param size
 #'@param index.pnl
+#'@import matrixStats
 #'@note  TODO: need some work to standarlize it 
 PerformanceTable <- function(res, perf, size, index.pnl){
   nport <- ncol(perf)
@@ -23,15 +24,14 @@ PerformanceTable <- function(res, perf, size, index.pnl){
   ) 
   
   
-  library(matrixStats)
-  table <- data.frame(Port=1:nport, 
+  table <- data.frame(Port = 1:nport, 
                       AvgRet = colMeans(perf)*100, 
-                      AnnRet=colMeans(perf)*12*100, 
-                      AnnStDev=colSds(perf)*sqrt(12)*100, 
-                      Size=colMeans(size),
-                      Mdd=MDD,
-                      IR=IR,
-                      TurnOver=turnOver*12
+                      AnnRet = colMeans(perf)*12*100, 
+                      AnnStDev = colSds(perf)*sqrt(12)*100, 
+                      Size = colMeans(size),
+                      Mdd = MDD,
+                      IR = IR,
+                      TurnOver = turnOver*12
   )
   colnames(table) <- c("Port","Month Ret (%)","Ann Ret (%)", "Ann St Dev(%)", "Avg Size", "MDD (%)", "IR", "Turnover")
   return(table)

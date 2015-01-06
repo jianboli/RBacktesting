@@ -9,7 +9,9 @@ ThetaAdjNotional(object, ...)
 \method{ThetaAdjNotional}{OptionPos}(object)
 }
 \arguments{
-\item{An}{OptionPos object}
+\item{object}{A portfolio object}
+
+\item{...}{Other parameters}
 }
 \value{
 the Theta Adjust Notional value
