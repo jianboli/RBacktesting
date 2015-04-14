@@ -10,6 +10,6 @@ Notional <- function(object, ...)
 #'@title The notional value of the given option portfolio object
 #'@return The notioal value
 #'@export
-Notional.OptionPos <- function(object, ...){
+Notional.OptionPtf <- function(object, ...){
   return(sum(sign(object$delta) *object$multiplier * object$amount * ifelse(is.na(object$underlyingPrice), object$strike, object$underlyingPrice)))
 }

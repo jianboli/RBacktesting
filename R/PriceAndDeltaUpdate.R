@@ -7,9 +7,9 @@ PriceAndDeltaUpdate <- function(object, ...)
 #' @describeIn PriceAndDeltaUpdate
 #' @param date The actual as of date of the calculation
 #' @return Calcuate the closing price and delta based on black scholes model
-PriceAndDeltaUpdate.OptionPos <- function(object, date){
-  if(! is.OptionPos(object))
-    stop("object is not a PotionPos object")
+PriceAndDeltaUpdate.OptionPtf <- function(object, date){
+  if(! is.OptionPtf(object))
+    stop("object is not a OptionPtf object")
   if(! is.Date(date))
     stop("date is not a Date object")
   tau  <- as.numeric(as.Date(object$expiration) - date)/365

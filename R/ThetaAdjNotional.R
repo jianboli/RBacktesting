@@ -6,8 +6,8 @@ ThetaAdjNotional <- function(object, ...)
 
 
 #' @describeIn ThetaAdjNotional
-#' @title Theta Adjust notional value of an OptionPos object
+#' @title Theta Adjust notional value of an OptionPtf object
 #' @return the Theta Adjust Notional value
-ThetaAdjNotional.OptionPos <- function(object){
+ThetaAdjNotional.OptionPtf <- function(object){
   return(sum(object$theta * object$multiplier * object$amount * object$underlyingPrice))
 }

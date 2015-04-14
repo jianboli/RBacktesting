@@ -10,6 +10,9 @@
 #'        \item Mdd The maximium draw down
 #'        \item SharpeRatio The Sharpe ratio
 #'        \item IR The information ratio
+#'        \item PostiveRate The postive performance ratio
+#'        \item tValue The student t value
+#'        \item pValue The p value assuming two tail test. For one tail, divided by 2
 #'        }
 #' @examples
 #' \dontrun{
@@ -25,11 +28,18 @@
 #' }
 #' @export
 PerformanceSummary <- function(pnl, indexPnl, r=0){
+  exPnl <- pnl - indexPnl
+  t <- mean(exPnl)*sqrt(length(pnl))/sd(expnl)
   return(c(Return=prod(1+pnl), 
            Sd=sd(pnl), 
            Mdd=MaxDrawdown(CumReturn(pnl))$maxdrawdown, 
            SharpeRatio=SharpeRatio(pnl, r), 
-           IR = InformationRatio(pnl, indexPnl)))  
+           IR = InformationRatio(pnl, indexPnl),
+           PostiveRate = sum(exPnl > 0)/length(exPnl),
+           t = t,
+           p = 2*pt(-abs(t),df=length(exPnl)-1) # assume two tail 
+         )
+        )
 }
 
 #' @rdname PerformanceSummary
@@ -46,7 +56,7 @@ MonthlyPerformanceSummary <- function(dates, pnl, indexPnl, r=0){
     summary <- PerformanceSummary(pnl[idx], indexPnl[idx], r)
     perfSummary <- rbind(perfSummary, c(i,summary))  
   }
-  colnames(perfSummary) <- c("Month", "Return", "Sd", "MDD", "SharpeRatio", "IR")
+  colnames(perfSummary) <- c("Month", "Return", "Sd", "MDD", "SharpeRatio", "IR", "PositveRate", "tValue", "pValue")
   return(perfSummary) 
 }
 
@@ -63,7 +73,7 @@ YearlyPerformanceSummary <- function(dates, pnl, indexPnl, r=0){
     summary <- PerformanceSummary(pnl[idx], indexPnl[idx], r)
     perfSummary <- rbind(perfSummary, c(i,summary))  
   }
-  colnames(perfSummary) <- c("Year", "Return", "Sd", "MDD", "SharpeRatio", "IR")
+  colnames(perfSummary) <- c("Year", "Return", "Sd", "MDD", "SharpeRatio", "IR", "PositveRate", "tValue", "pValue")
   return(perfSummary) 
 }
 #' @rdname PerformanceSummary
@@ -71,9 +81,18 @@ YearlyPerformanceSummary <- function(dates, pnl, indexPnl, r=0){
 #' @param freq The sample frequency
 #' @export
 AnnualizedPerformanceSummary <- function(pnl, indexPnl, r=0, freq=1/12){ 
-  return(c(Return=mean(pnl)/freq, 
-           Sd=sd(pnl)/sqrt(freq), 
+  exPnl <- (pnl-indexPnl)
+  annulizeMean <- function(x) mean(x)/freq
+  annulizeSd <- function(x) sd(x)/sqrt(freq)
+  t <- annulizeMean(exPnl)*sqrt(length(exPnl))/annulizeSd(exPnl)
+  return(c(Return=annulizeMean(pnl), 
+           Sd=annulizeSd(pnl), 
            Mdd=MaxDrawdown(cumprod(1+pnl))$maxdrawdown, 
            SharpeRatio=SharpeRatio(pnl, r)/sqrt(freq), 
-           IR = InformationRatio(pnl, indexPnl)/sqrt(freq)))  
+           IR = InformationRatio(pnl, indexPnl)/sqrt(freq), 
+           PostiveRate = sum(exPnl > 0)/length(exPnl),
+           tValue = t,
+           pValue = 2*pt(-abs(t),df=length(exPnl)-1) # assume two tail 
+  ) # c
+  ) # return
 }

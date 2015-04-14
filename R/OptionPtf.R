@@ -1,7 +1,8 @@
-#' OptionPos Class (S3) Constructor: this is a portfolio of options
+#' OptionPtf Class (S3) Constructor: this is a portfolio of options
 #' 
-#' @return Generate empty OptionPos object
-OptionPos <- function(){
+#' @return Generate empty OptionPtf object
+#' @export
+OptionPtf <- function(){
   x <- data.frame(
     name = character(),
     underlyingName = character(),
@@ -10,6 +11,7 @@ OptionPos <- function(){
     type = character(),
     multiplier = double(),
     amount = double(),
+    openPrice = double(),
     price = double(),
     delta = double(),
     vega = double(),
@@ -18,6 +20,6 @@ OptionPos <- function(){
     underlyingSigma = double(),
     interestRate = double()
   )
-  class(x) <- c("data.frame","OptionPos")
+  class(x) <- c("data.frame","OptionPtf")
   return(x)
 }
