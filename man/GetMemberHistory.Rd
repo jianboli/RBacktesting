@@ -4,7 +4,8 @@
 \alias{GetMemberHistory}
 \title{Import member history Index Data}
 \usage{
-GetMemberHistory(indexName, fields, stDate, endDate, monthly = F)
+GetMemberHistory(indexName, fields, stDate, endDate, monthly = F,
+  firstn = 0)
 }
 \arguments{
 \item{indexName}{The ticker of the index, e.g. SPX Index}
@@ -16,6 +17,8 @@ GetMemberHistory(indexName, fields, stDate, endDate, monthly = F)
 \item{endDate}{Ending date}
 
 \item{monthly}{If montly data is preferred}
+
+\item{firstn}{If specified, only return the top fistn members with highest weight}
 }
 \value{
 A list including the following items
@@ -30,6 +33,7 @@ A list including the following items
 Import member history Index Data
 }
 \note{
-This function requires a lot bloomberg data if the period between stDate and endDate are very long
+This function requires a lot bloomberg data if the period between stDate
+and endDate are very long
 }
 

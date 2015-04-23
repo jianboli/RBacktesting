@@ -2,9 +2,9 @@
 % Please edit documentation in R/PrintToHtmlTable.R
 \name{PrintToHtmlTable}
 \alias{PrintToHtmlTable}
-\title{import xtable}
+\title{Print table to HTML table using the powerful xtable function}
 \usage{
-PrintToHtmlTable(table, include.rownames = F)
+PrintToHtmlTable(table, include.rownames = F, cap = NA)
 }
 \arguments{
 \item{table}{A data.frame object of something that can be convert to a table}
@@ -15,6 +15,6 @@ PrintToHtmlTable(table, include.rownames = F)
 the return value is not important, this function is used for its side effect
 }
 \description{
-import xtable
+Print table to HTML table using the powerful xtable function
 }
 
