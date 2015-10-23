@@ -1,8 +1,22 @@
-#' The maximium drawdown of a time seris
+#' Maximum drawdown
+#' 
+#' The maximium drawdown of a time seris in the percentage values. 
+#' The maxdrawdown function in tseries 
+#' does not seem to be right given the fact that it is counting the absolute 
+#' value changes 
 #' 
 #' @param perf The historical performance of a time series
 #' @return A list includes \itemize{\item maxdrawdown: The MDD value \item from: The starting time of the MDD \item to: The end time of the MDD}
 #' @export
+#' @examples 
+#' \dontrun{
+#' require(quantmod)
+#' google <- getSymbols("GOOGL", auto.assign = F)
+#' perf <- Ad(google)
+#' mdd <- MaxDrawdown(perf)
+#' plot.zoo(perf)
+#' AddMaxDrawdownArrow(perf, mdd)
+#' }
 MaxDrawdown <- function(perf)
 {
   if(is(perf, 'xts'))

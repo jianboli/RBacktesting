@@ -39,28 +39,18 @@ GetMemberHistory <- function(indexName, fields, stDate, endDate, monthly=F,
     rebalance.date <- seq.Date(from = stDate, to = endDate, by='day')
   }
   for(i in 1:length(rebalance.date)){
-    stocks <- bds(conn, indexName, "INDX_MWEIGHT_PX", 
+    stocks <- bds(conn, indexName, "INDX_MWEIGHT_HIST", 
                   override_fields=c("END_DATE_OVERRIDE"), 
                   override_values=format(rebalance.date[i], '%Y%m%d'))
-    if(nrow(stocks) == 700) # the limit of INDX_MWEIGHT_PX
-      stocks <- rbind(stocks, bds(conn, indexName, "INDX_MWEIGHT_PX2", 
-                                  override_fields=c("END_DATE_OVERRIDE"), 
-                                  override_values=format(rebalance.date[i], '%Y%m%d')))
-    if(nrow(stocks) == 1400)
-      stocks <- rbind(stocks, bds(conn, indexName, "INDX_MWEIGHT_PX3", 
-                                  override_fields=c("END_DATE_OVERRIDE"), 
-                                  override_values=format(rebalance.date[i], '%Y%m%d')))
-    
     if(firstn > 0){
       stocks <- SortBy(stocks, "Percent Weight", decreasing = T)[1:firstn, ]
     }
     
-    symbols[[i]] <- stocks[,1]
+    symbols[[format(rebalance.date)]] <- stocks[,1]
   }
   
   #get the historical data
   total.symbol <- do.call(c, symbols)
-  names(symbols) <- format(rebalance.date)
   total.symbol <- paste(total.symbol, "Equity")
   total.symbol.unique <- unique(total.symbol)
   

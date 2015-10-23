@@ -2,6 +2,7 @@
 #' 
 #' @return Generate empty EquityPtf object
 #' @export
+#' 
 EquityPtf <- function(){
   x <- data.frame(
     name = character(),
